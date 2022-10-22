@@ -1,5 +1,14 @@
+import random
+
 landScape = [[0,1,2,3,4] , [5,6,7,8,9] , [10,11,12,13,14] , [15,16,17,18,19], [20,21,22,23,24]]
-    #initial 5x5 array 
+    #initial 5x5 array
+attributes = ["rocky", "wet", "muddy"]
+landScapeAtrributes = [[],[],[],[],[]]
+def giveAttributes(map):
+    for array in map:
+        print(array)
+        for i in range(0,5):
+            array.insert(i, attributes[random.randint(0,len(attributes) - 1)])
 
 class cord:
     def __init__(self, xVal, yVal):
@@ -25,8 +34,11 @@ def move(direction):
     else:
         print("Unknown command try again?")
 
+
 exit = False
 
+giveAttributes(landScapeAtrributes)
+print(landScapeAtrributes)
 while exit == False:
     print("Awaiting Movememnt Command[w,a,s,d]") #asks for direction
     command = input()
