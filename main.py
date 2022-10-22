@@ -1,45 +1,40 @@
-import json
-from pickle import FALSE, TRUE
-
-import requests
-
-r = requests.get("https://cataas.com/cat?json=true")
-data = json.loads(r.text)
-
-print(data["url"])
-
 landScape = [[0,1,2,3,4] , [5,6,7,8,9] , [10,11,12,13,14] , [15,16,17,18,19], [20,21,22,23,24]]
     #initial 5x5 array 
 
-x = 2   # 2,2 is the center of the 5 x 5 array
-y = 2
+class cord:
+    def __init__(self, xVal, yVal):
+        self.xVal = xVal
+        self.yVal = yVal
 
-position = [x,y] #Set default posistion to the middle of the array
+roboPosition = cord(2,2)
+
 
 def move(direction):
     if(direction == "w"):
         print("moved forward")
-        y += 1
-    if(direction == "a"):
+        roboPosition.yVal += 1
+    elif(direction == "a"):
         print("moved west")
-        x -= 1
-    if(direction == "s"):
+        roboPosition.xVal -= 1
+    elif(direction == "s"):
         print("moved south")
-        y -= 1
-    if(direction == "d"):
+        roboPosition.yVal -= 1
+    elif(direction == "d"):
         print("moved east")
-        x += 1
+        roboPosition.xVal += 1
     else:
         print("Unknown command try again?")
 
-exit = FALSE
+exit = False
 
-while exit == FALSE:
-    print("Awaiting Command")
+while exit == False:
+    print("Awaiting Movememnt Command[w,a,s,d]") #asks for direction
     command = input()
-    if command == FALSE:
-        exit == TRUE
+    command = (command) #resolve later find how to make a string all lower case
+    if command == False:
+        exit == True
     else:
-        exit == FALSE
+        exit == False
         move(command)
+        print("Awaiting Research Command") #asks for action
 
