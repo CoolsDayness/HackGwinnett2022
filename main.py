@@ -13,23 +13,46 @@ class cord:
     def __init__(self, xVal, yVal):
         self.xVal = xVal
         self.yVal = yVal
+    def moveForward(self):
+        if self.yVal <= len(landScape) - 2:
+            self.yVal += 1
+            print("moved forward")
+        else:
+            print("edge of bounds!")
+    def moveBackward(self):
+        if self.yVal >= 1:
+            self.yVal -= 1
+            print("moved south")
+        else:
+            print("edge of bounds!")
+    def moveLeft(self):
+        if self.xVal >= 1:
+            self.xVal -= 1
+            print("moved forward")
+        else:
+            print("edge of bounds!")
+    def moveRight(self):
+        if self.xVal <= len(landScape[0]) - 2:
+            self.xVal += 1
+            print("moved east")
+        else:
+            print("edge of bounds!")
+    def printPos(self):
+        print(self.xVal)
+        print(self.yVal)
 
 roboPosition = cord(2,2)
 
 
 def move(direction):
     if(direction == "w"):
-        print("moved forward")
-        roboPosition.yVal += 1
+        roboPosition.moveForward()
     elif(direction == "a"):
-        print("moved west")
-        roboPosition.xVal -= 1
+        roboPosition.moveLeft()
     elif(direction == "s"):
-        print("moved south")
-        roboPosition.yVal -= 1
+        roboPosition.moveBackward()
     elif(direction == "d"):
-        print("moved east")
-        roboPosition.xVal += 1
+        roboPosition.moveRight()
     else:
         print("Unknown command try again?")
 
@@ -37,7 +60,7 @@ def move(direction):
 exit = False
 
 giveAttributes(landScapeAtrributes)
-print(landScapeAtrributes)
+
 while exit == False:
     print("Awaiting Movememnt Command[w,a,s,d]") #asks for direction
     command = input()
@@ -46,6 +69,17 @@ while exit == False:
         exit = True
     else:
         move(command)
+        roboPosition.printPos()
+        mine = ["fossil", "soil", "rock", "river"]
+        rand = random.choice(mine)
+        observe = ["metal", "water", "sand storm", "volcano", "canyons", "hills", "river"]
+        rand_ob = random.choice(observe)
+        question = input("Do you want to Mine/observe: ")
+        print(question)
+        if question.casefold() == "mine".casefold():
+            print("you encountered a " + rand)
+        elif question == "observe":
+            print("you saw a " + rand_ob)
         print("Awaiting Research Command") #asks for action
 
 
