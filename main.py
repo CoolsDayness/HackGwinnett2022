@@ -6,7 +6,6 @@ attributes = ["rocky", "wet", "muddy"]
 landScapeAtrributes = [[],[],[],[],[]]
 def giveAttributes(map):
     for array in map:
-        print(array)
         for i in range(0,5):
             array.insert(i, attributes[random.randint(0,len(attributes) - 1)])
 
@@ -42,11 +41,11 @@ print(landScapeAtrributes)
 while exit == False:
     print("Awaiting Movememnt Command[w,a,s,d]") #asks for direction
     command = input()
-    command = (command) #resolve later find how to make a string all lower case
-    if command == False:
-        exit == True
+
+    if command == "False":
+        exit = True
     else:
-        exit == False
         move(command)
         print("Awaiting Research Command") #asks for action
+
 
